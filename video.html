@@ -28,7 +28,6 @@
         .card-info h3 { margin: 0; font-size: 1.1rem; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
         .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 8%; background: #090d16; color: var(--text-dim); text-align: center; font-size: 0.85rem; }
         .footer b { color: var(--text); display: block; margin-bottom: 5px; font-size: 1rem; }
-        .loading { grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dim); }
     </style>
 </head>
 <body>
@@ -49,21 +48,26 @@
     </main>
     <footer class="footer">
         <b>PT DKV VOICE STUDIO</b>
-        <p>Jl. Kolonel Masturi, Kp. Nagrak Rt 01 Rw O9 Sukajaya-Lembang Kab. Bandung Barat, West Java, Indonesia.</p>
+        <p>Jl. Kp. Ciwangun Indah Camp, Kab. Bandung Barat, West Java, Indonesia.</p>
         <p>&copy; 2025 KV Voice Studio. All rights reserved.</p>
     </footer>
     <script>
         const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTg3rjqHoD36dUM0PU33sGqYnovngVpCfBS6A2EYngYMeU8vuvXLRRuD_Dd8utXGckTMKQB_IKtqW5H/pub?output=csv";
+        
         function fixLink(url, isVideo = false) {
             if (!url || url.trim() === "" || url.trim() === "-") return null;
             let link = url.trim();
+            // Video can still be YouTube, but Dropbox links follow strict rule
             if (isVideo && (link.includes("youtube.com") || link.includes("youtu.be"))) {
                 let videoId = link.includes("v=") ? link.split("v=")[1].split("&")[0] : link.split("/").pop().split("?")[0];
                 return `https://www.youtube.com/embed/${videoId}`;
             }
-            if (link.includes("dropbox.com")) return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace(/\?dl=[01]/, "?raw=1").replace("&dl=0", "&raw=1");
-            return link;
+            if (link.includes("dropbox.com")) {
+                return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace(/\?dl=[01]/, "?raw=1").replace("&dl=0", "&raw=1");
+            }
+            return null; // Reject others
         }
+
         async function loadVideos() {
             const grid = document.getElementById("videoGrid");
             try {
