@@ -3,27 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Showcase | KV Voice Studio</title>
+    <title>Portfolio | KV Voice Studio</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #0b0f1a; --card-bg: #161b2a; --primary: #f43f5e; --text: #f8fafc; --text-dim: #94a3b8; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(11, 15, 26, 0.95); position: sticky; top: 0; border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100; }
-        .logo { font-weight: 800; color: #fff; text-decoration: none; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(11, 15, 26, 0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-weight: 800; color: #fff; text-decoration: none; font-size: 1.2rem; }
         .nav-links a { text-decoration: none; color: var(--text-dim); margin-left: 20px; font-weight: 600; font-size: 0.9rem; }
         .nav-links a.active { color: var(--primary); }
+
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .video-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
-        .video-wrapper { width: 100%; aspect-ratio: 16/9; background: #000; }
-        video { width: 100%; height: 100%; object-fit: cover; }
-        .video-info { padding: 20px; }
-        .video-info h3 { margin: 0; font-size: 1.1rem; font-weight: 800; color: #fff; }
-        .tag { font-size: 0.7rem; color: var(--primary); font-weight: 800; text-transform: uppercase; margin-bottom: 5px; display: block; }
+        .video-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .video-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        
+        .video-wrapper { width: 100%; aspect-ratio: 16/9; background: #000; position: relative; }
+        video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .video-info { padding: 20px; text-align: center; }
+        .video-info h3 { margin: 0; font-size: 1.1rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+
         .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 50px; }
-        .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 10px 18px; border-radius: 12px; cursor: pointer; }
+        .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 10px 18px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
         .page-btn.active { background: var(--primary); color: white; }
-        footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem; }
+
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -31,13 +36,17 @@
         <a href="index.html" class="logo">KV VOICE STUDIO</a>
         <div class="nav-links">
             <a href="index.html">Audio Catalog</a>
-            <a href="video.html" class="active">Video Showcase</a>
+            <a href="video.html" class="active">Video Portfolio</a>
         </div>
     </nav>
 
     <main class="container">
-        <h1 style="text-align:center; margin-bottom: 40px;">Video Demo <span style="color:var(--primary)">KV Voice</span></h1>
-        <div id="videoGrid" class="video-grid"></div>
+        <h1 style="text-align:center; margin-bottom: 50px; letter-spacing: -1.5px;">KV Voice Studio <span style="color:var(--primary)">Portfolio</span></h1>
+        
+        <div id="videoGrid" class="video-grid">
+            <p style="grid-column: 1/-1; text-align: center; opacity: 0.5;">Memuat portfolio...</p>
+        </div>
+        
         <div id="pagination" class="pagination"></div>
     </main>
 
@@ -45,7 +54,7 @@
 
     <script>
         const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTg3rjqHoD36dUM0PU33sGqYnovngVpCfBS6A2EYngYMeU8vuvXLRRuD_Dd8utXGckTMKQB_IKtqW5H/pub?output=csv";
-        const LOGO_KV = "logo.png"; // Fallback logo jika foto L kosong
+        const LOGO_FALLBACK = "logo.png"; // Gunakan logo.png di folder website Anda
 
         let videoData = [];
         let currentPage = 1;
@@ -54,9 +63,7 @@
         function fixLink(url) {
             if (!url || url.trim() === "" || url.trim() === "-") return null;
             let link = url.trim();
-            if (link.includes("dropbox.com")) {
-                return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace("dl=0", "raw=1");
-            }
+            if (link.includes("dropbox.com")) return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace("dl=0", "raw=1");
             return link;
         }
 
@@ -65,9 +72,13 @@
                 const res = await fetch(`${CSV_URL}&t=${new Date().getTime()}`);
                 const text = await res.text();
                 const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
+                
                 videoData = rows.slice(1).map(row => {
                     const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
-                    return { category: cols[2], video: fixLink(cols[13]), thumb: fixLink(cols[11]) };
+                    return { 
+                        video: fixLink(cols[13]), // Kolom N
+                        thumb: fixLink(cols[11])  // Kolom L
+                    };
                 }).filter(v => v.video);
                 render();
             } catch (e) { console.error(e); }
@@ -76,15 +87,15 @@
         function render() {
             const grid = document.getElementById("videoGrid");
             const items = videoData.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage);
+            
             grid.innerHTML = items.map(v => `
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video controls preload="none" poster="${v.thumb || LOGO_KV}" playsinline>
+                        <video controls preload="none" poster="${v.thumb || LOGO_FALLBACK}" playsinline>
                             <source src="${v.video}" type="video/mp4">
                         </video>
                     </div>
                     <div class="video-info">
-                        <span class="tag">${v.category}</span>
                         <h3>Video Demo KV Voice</h3>
                     </div>
                 </div>
