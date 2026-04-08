@@ -1,3 +1,4 @@
+// GANTI LINK DI BAWAH INI DENGAN LINK HASIL "PUBLISH TO WEB" (PILIH CSV)
 const CSV_URL = "https://docs.google.com/spreadsheets/d/1aY3zpdHuwoS_UIfWJK-tmjy9M-BvNov2vPz1CcUz-ck/export?format=csv";
 
 let talents = [];
@@ -22,37 +23,43 @@ function fixLink(url) {
 async function loadData() {
     try {
         const res = await fetch(CSV_URL);
+        if (!res.ok) throw new Error("Gagal mengambil data dari Google Sheets");
+        
         const text = await res.text();
         const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
         
+        // Mulai dari index 1 (lewatkan judul kolom)
         talents = rows.slice(1).map(row => {
             const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
             
-            // Ambil Sample E sampai K (index 4-10)
+            // Audio Kolom E sampai K (Index 4-10)
             let samples = [];
             for (let i = 4; i <= 10; i++) {
                 let audio = fixLink(cols[i]);
                 if (audio) samples.push(audio);
             }
 
-            // Logika Deteksi Gender (Female dulu baru Male)
+            // Deteksi Gender (Sangat toleran)
             let rawCat = (cols[3] || "").toLowerCase();
             let gender = "Other";
-            if (rawCat.includes("female")) gender = "Female";
-            else if (rawCat.includes("male")) gender = "Male";
+            if (rawCat.includes("female") || rawCat.includes("wanita") || rawCat.includes("perempuan")) {
+                gender = "Female";
+            } else if (rawCat.includes("male") || rawCat.includes("pria") || rawCat.includes("laki")) {
+                gender = "Male";
+            }
 
             return {
                 name: cols[2] || "Unnamed",
                 gender: gender,
-                displayGender: cols[3] || "",
+                displayGender: cols[3] || "Talent",
                 samples: samples
             };
-        }).filter(t => t.samples.length > 0 && (t.gender === "Male" || t.gender === "Female"));
+        }).filter(t => t.samples.length > 0); // Minimal ada 1 audio baru muncul
 
         render();
     } catch (e) {
         console.error(e);
-        document.getElementById("talentGrid").innerHTML = "Gagal memuat database.";
+        document.getElementById("talentGrid").innerHTML = `<div class="loading">Database tidak bisa diakses. <br><small>Pastikan Google Sheet sudah di-'Publish to Web' sebagai CSV.</small></div>`;
     }
 }
 
@@ -61,13 +68,14 @@ function render() {
     const search = document.getElementById("searchInput").value.toLowerCase();
     grid.innerHTML = "";
 
-    const filtered = talents.filter(t => 
-        (currentFilter === "all" || t.gender === currentFilter) &&
-        (t.name.toLowerCase().includes(search))
-    );
+    const filtered = talents.filter(t => {
+        const matchFilter = currentFilter === "all" || t.gender === currentFilter;
+        const matchSearch = t.name.toLowerCase().includes(search);
+        return matchFilter && matchSearch;
+    });
 
     if (filtered.length === 0) {
-        grid.innerHTML = "<div class='loading'>Tidak ada talent ditemukan.</div>";
+        grid.innerHTML = "<div class='loading'>Talent tidak tersedia untuk kriteria ini.</div>";
         return;
     }
 
@@ -97,6 +105,7 @@ function render() {
         grid.appendChild(div);
     });
 
+    // Auto-stop audio lain
     const players = document.querySelectorAll("audio");
     players.forEach(p => p.addEventListener("play", () => {
         players.forEach(other => { if(other !== p) other.pause(); });
