@@ -7,44 +7,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #0b0f1a; --card-bg: #161b2a; --primary: #f43f5e; --text: #f8fafc; --text-dim: #94a3b8; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
-        
-        /* Navbar */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(11, 15, 26, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .logo { font-weight: 800; font-size: 1.2rem; color: #fff; text-decoration: none; }
-        .nav-links a { text-decoration: none; color: var(--text-dim); margin-left: 20px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(11, 15, 26, 0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-weight: 800; color: #fff; text-decoration: none; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); margin-left: 20px; font-weight: 600; font-size: 0.9rem; }
         .nav-links a.active { color: var(--primary); }
 
-        /* Container */
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px; }
-        .header-section { text-align: center; margin-bottom: 50px; }
-        .header-section h1 { font-size: 2.5rem; margin: 0; letter-spacing: -1px; }
-
-        /* Video Grid */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
-        .video-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
-        .video-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-
-        /* Video Wrapper */
-        .video-wrapper { width: 100%; aspect-ratio: 16/9; background: #000; position: relative; }
-        video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .video-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        
+        .video-wrapper { width: 100%; aspect-ratio: 16/9; background: #000; }
+        video { width: 100%; height: 100%; object-fit: cover; }
 
         .video-info { padding: 20px; }
-        .video-info h3 { margin: 0; font-size: 1.2rem; font-weight: 800; color: #fff; }
-        .video-tag { font-size: 0.7rem; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .video-info h3 { margin: 0; font-size: 1.1rem; font-weight: 800; color: #fff; }
+        .video-tag { font-size: 0.7rem; color: var(--primary); font-weight: 800; text-transform: uppercase; margin-bottom: 5px; display: block; }
 
-        /* Pagination */
-        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 50px; }
-        .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 700; transition: 0.3s; }
-        .page-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 50px; }
+        .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 10px 18px; border-radius: 12px; cursor: pointer; }
+        .page-btn.active { background: var(--primary); color: white; }
 
-        footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.85rem; }
-        .loading { grid-column: 1/-1; text-align: center; padding: 100px; font-weight: bold; color: var(--primary); }
-
-        @media (max-width: 600px) {
-            .video-grid { grid-template-columns: 1fr; }
-            .navbar { padding: 15px 5%; }
-        }
+        footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -53,143 +37,68 @@
         <div class="nav-links">
             <a href="index.html">Audio Catalog</a>
             <a href="video.html" class="active">Video Showcase</a>
-            <a href="https://wa.me/6287823430778" style="color: var(--primary)">Contact</a>
         </div>
     </nav>
 
     <main class="container">
-        <div class="header-section">
-            <h1>Video <span style="color:var(--primary)">Showcase</span></h1>
-            <p style="color:var(--text-dim)">Visual & Voice Demo Portfolio</p>
-        </div>
-
-        <div id="videoGrid" class="video-grid">
-            <div class="loading">Sinkronisasi Video...</div>
-        </div>
-
+        <h1 style="text-align:center; margin-bottom: 40px;">Video <span style="color:var(--primary)">Showcase</span></h1>
+        <div id="videoGrid" class="video-grid"></div>
         <div id="pagination" class="pagination"></div>
     </main>
 
-    <footer>
-        Setiap project didukung oleh tim Lokalisasi, Subtitling, dan Transkreasi kami.
-        <br><br>&copy; 2024 KV Voice Studio
-    </footer>
+    <footer>Setiap project didukung oleh tim Lokalisasi, Subtitling, dan Transkreasi kami.</footer>
 
     <script>
         const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTg3rjqHoD36dUM0PU33sGqYnovngVpCfBS6A2EYngYMeU8vuvXLRRuD_Dd8utXGckTMKQB_IKtqW5H/pub?output=csv";
+        const LOGO_URL = "logo.png"; // PASTIKAN FILE LOGO.PNG ADA DI FOLDER YANG SAMA
         
-        let videoTalents = [];
+        let videoData = [];
         let currentPage = 1;
-        const itemsPerPage = 8; // BATAS 8 VIDEO PER HALAMAN
+        const itemsPerPage = 8;
 
-        // Fungsi konversi link Dropbox & Drive agar bisa play langsung
-        function fixMediaLink(url, isVideo = false) {
+        function fixMedia(url) {
             if (!url || url.trim() === "" || url.trim() === "-") return null;
             let link = url.trim();
-
-            // Konversi Dropbox
-            if (link.includes("dropbox.com")) {
-                return link.replace("www.dropbox.com", "dl.dropboxusercontent.com")
-                           .replace(/\?dl=[01]/, "?raw=1");
-            }
-
-            // Konversi Google Drive
-            if (link.includes("drive.google.com")) {
-                const match = link.match(/[?&]id=([^&]+)/) || link.match(/\/d\/(.*?)\//) || link.match(/\/file\/d\/(.*?)$/);
-                if (match) return `https://docs.google.com/uc?export=view&id=${match[1].split(/[?&/]/)[0]}`;
-            }
+            if (link.includes("dropbox.com")) return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace(/\?dl=[01]/, "?raw=1");
             return link;
         }
 
-        async function loadVideoData() {
-            try {
-                const res = await fetch(`${CSV_URL}&t=${new Date().getTime()}`);
-                const text = await res.text();
-                const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
-                
-                videoTalents = rows.slice(1).map(row => {
-                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
-                    
-                    return {
-                        name: cols[12] || "Talent",
-                        category: cols[2] || "Voice Talent",
-                        video: fixMediaLink(cols[13]), // Kolom N
-                        photo: fixMediaLink(cols[11])  // Kolom L (untuk Thumbnail)
-                    };
-                }).filter(t => t.video !== null); // Hanya tampilkan yang ada videonya
-
-                renderVideoPage();
-            } catch (e) {
-                document.getElementById("videoGrid").innerHTML = "<div class='loading'>Gagal memuat video.</div>";
-            }
+        async function loadVideos() {
+            const res = await fetch(`${CSV_URL}&t=${new Date().getTime()}`);
+            const text = await res.text();
+            const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
+            videoData = rows.slice(1).map(row => {
+                const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
+                return { category: cols[2], video: fixMedia(cols[13]), thumb: fixMedia(cols[11]) };
+            }).filter(v => v.video);
+            render();
         }
 
-        function renderVideoPage() {
+        function render() {
             const grid = document.getElementById("videoGrid");
-            grid.innerHTML = "";
-            
-            const start = (currentPage - 1) * itemsPerPage;
-            const items = videoTalents.slice(start, start + itemsPerPage);
-
-            if (items.length === 0) {
-                grid.innerHTML = "<div class='loading'>Belum ada video tersedia.</div>";
-                return;
-            }
-
-            items.forEach(t => {
-                const card = document.createElement("div");
-                card.className = "video-card";
-                card.innerHTML = `
+            grid.innerHTML = videoData.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage).map(v => `
+                <div class="video-card">
                     <div class="video-wrapper">
-                        <video 
-                            controls 
-                            preload="none" 
-                            poster="${t.photo || ''}"
-                            playsinline>
-                            <source src="${t.video}" type="video/mp4">
-                            Browser tidak mendukung pemutaran video.
+                        <video controls preload="none" poster="${v.thumb || LOGO_URL}">
+                            <source src="${v.video}" type="video/mp4">
                         </video>
                     </div>
                     <div class="video-info">
-                        <div class="video-tag">${t.category}</div>
-                        <h3>${t.name}</h3>
+                        <span class="video-tag">${v.category}</span>
+                        <h3>Video Demo KV Voice</h3>
                     </div>
-                `;
-                grid.appendChild(card);
-            });
-
-            // Tambahkan proteksi: hanya satu video yang boleh play
-            const allVideos = document.querySelectorAll('video');
-            allVideos.forEach(v => {
-                v.addEventListener('play', () => {
-                    allVideos.forEach(other => { if(other !== v) other.pause(); });
-                });
-            });
-
+                </div>
+            `).join('');
             renderPagination();
         }
 
         function renderPagination() {
             const container = document.getElementById("pagination");
-            const totalPages = Math.ceil(videoTalents.length / itemsPerPage);
-            container.innerHTML = "";
-            
-            if (totalPages <= 1) return;
-
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement("button");
-                btn.innerText = i;
-                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-                btn.onclick = () => {
-                    currentPage = i;
-                    renderVideoPage();
-                    window.scrollTo({ top: 300, behavior: 'smooth' });
-                };
-                container.appendChild(btn);
-            }
+            const total = Math.ceil(videoData.length / itemsPerPage);
+            container.innerHTML = Array.from({length: total}, (_, i) => `<button class="page-btn ${i+1===currentPage?'active':''}" onclick="currentPage=${i+1};render();window.scrollTo({top:0,behavior:'smooth'})">${i+1}</button>`).join('');
         }
 
-        loadVideoData();
+        loadVideos();
     </script>
 </body>
 </html>
