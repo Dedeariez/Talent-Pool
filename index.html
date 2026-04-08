@@ -11,30 +11,37 @@
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(11, 15, 26, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .logo { font-weight: 800; font-size: 1.2rem; color: #fff; text-decoration: none; }
         .logo span { color: var(--primary); }
-        .nav-links a { text-decoration: none; color: var(--text-dim); margin-left: 20px; font-weight: 600; font-size: 0.85rem; }
-        .nav-links a.active { color: var(--primary); }
+        .nav-links a { text-decoration: none; color: var(--text-dim); margin-left: 20px; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
         .filter-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; }
-        #searchInput { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 12px; color: white; width: 100%; max-width: 300px; outline: none; }
+        #searchInput { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 12px; color: white; width: 100%; max-width: 300px; outline: none; transition: 0.3s; }
+        #searchInput:focus { border-color: var(--primary); }
         .tabs { display: flex; background: var(--card-bg); padding: 5px; border-radius: 12px; }
         .tab-btn { background: transparent; border: none; color: var(--text-dim); cursor: pointer; font-weight: 600; padding: 8px 18px; border-radius: 8px; font-size: 0.85rem; }
         .tab-btn.active { background: var(--primary); color: #000; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; min-height: 400px; }
         .card { background: var(--card-bg); border-radius: 20px; padding: 16px; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition: 0.3s; height: 100%; }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
         .img-wrapper { width: 100%; aspect-ratio: 3/4; background: #0f172a; border-radius: 14px; margin-bottom: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .img-placeholder { color: var(--text-dim); font-size: 0.7rem; font-weight: 800; opacity: 0.5; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        
         .card h3 { margin: 0; font-size: 1.1rem; font-weight: 800; }
         .tag { font-size: 0.65rem; background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 3px 10px; border-radius: 6px; font-weight: 800; text-transform: uppercase; margin-top: 5px; display: inline-block; }
+
         .samples-list { display: flex; flex-direction: column; gap: 6px; margin-top: 15px; }
-        .samples-list:empty { display: none; margin: 0; }
+        .samples-list:empty { display: none; }
         .audio-box { background: rgba(255,255,255,0.03); padding: 8px; border-radius: 10px; }
         .audio-box label { font-size: 8px; color: var(--text-dim); font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 3px; }
         audio { width: 100%; height: 25px; filter: invert(100%) hue-rotate(180deg) brightness(1.5); }
+
         .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 50px; }
-        .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 8px 16px; border-radius: 10px; cursor: pointer; }
-        .page-btn.active { background: var(--primary); color: #000; }
-        footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem; }
+        .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 8px 16px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+        .page-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
+
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; color: var(--text-dim); font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -42,7 +49,7 @@
         <a href="index.html" class="logo">KV <span>VOICE STUDIO</span></a>
         <div class="nav-links">
             <a href="index.html" class="active">Audio Catalog</a>
-            <a href="video.html">Video Showcase</a>
+            <a href="video.html">Video Portfolio</a>
             <a href="https://wa.me/6287823430778" style="color:var(--primary)">Contact</a>
         </div>
     </nav>
@@ -54,7 +61,6 @@
                 <button onclick="changeFilter('all')" class="tab-btn active" id="btn-all">All</button>
                 <button onclick="changeFilter('Male')" class="tab-btn" id="btn-Male">Male</button>
                 <button onclick="changeFilter('Female')" class="tab-btn" id="btn-Female">Female</button>
-                <button onclick="changeFilter('Kid')" class="tab-btn" id="btn-Kid">Kid</button>
             </div>
         </div>
         <div id="talentGrid" class="grid"></div>
@@ -90,19 +96,19 @@
                 allTalents = rows.slice(1).map(row => {
                     const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
                     let samples = [];
-                    for (let i = 3; i <= 7; i++) { // Dibatasi Kolom D sampai H (Max 5 Sampel)
+                    for (let i = 3; i <= 7; i++) { // Max 5 samples (D-H)
                         let s = fixLink(cols[i]);
                         if (s) samples.push(s);
                     }
                     return {
                         name: (cols[12] || "Talent").split(' ')[0],
-                        category: cols[2] || "Other",
+                        category: cols[2] || "",
                         photo: fixLink(cols[11]),
                         samples: samples
                     };
                 }).filter(t => t.name !== "Talent");
                 applyFilter();
-            } catch (e) { document.getElementById("talentGrid").innerHTML = "Error loading database."; }
+            } catch (e) { console.error(e); }
         }
 
         function applyFilter() {
@@ -114,34 +120,26 @@
 
         function render() {
             const grid = document.getElementById("talentGrid");
-            grid.innerHTML = "";
-            const items = filteredTalents.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage);
-            items.forEach(t => {
-                const card = document.createElement("div");
-                card.className = "card";
-                card.innerHTML = `
+            grid.innerHTML = filteredTalents.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage).map(t => `
+                <div class="card">
                     <div class="img-wrapper">
-                        ${t.photo ? `<img src="${t.photo}" loading="lazy">` : `<div class="img-placeholder">PHOTO NOT AVAILABLE</div>`}
+                        ${t.photo ? `<img src="${t.photo}" loading="lazy">` : `<div style="color:var(--text-dim);font-size:10px">NO PHOTO</div>`}
                     </div>
-                    <div style="margin-bottom: ${t.samples.length > 0 ? '5px' : '0'}">
+                    <div style="margin-bottom:${t.samples.length > 0 ? '5px' : '0'}">
                         <h3>${t.name}</h3>
                         <span class="tag">${t.category}</span>
                     </div>
                     <div class="samples-list">
                         ${t.samples.map((s, i) => `<div class="audio-box"><label>Sample ${i+1}</label><audio controls preload="none"><source src="${s}"></audio></div>`).join('')}
                     </div>
-                `;
-                grid.appendChild(card);
-            });
-            renderPaging();
+                </div>
+            `).join('');
+            
+            const total = Math.ceil(filteredTalents.length / itemsPerPage);
+            document.getElementById("pagination").innerHTML = Array.from({length: total}, (_, i) => `<button class="page-btn ${i+1===currentPage?'active':''}" onclick="currentPage=${i+1};render();window.scrollTo({top:300,behavior:'smooth'})">${i+1}</button>`).join('');
+            
             const audios = document.querySelectorAll("audio");
             audios.forEach(a => a.addEventListener("play", () => audios.forEach(o => { if(o !== a) o.pause(); })));
-        }
-
-        function renderPaging() {
-            const total = Math.ceil(filteredTalents.length / itemsPerPage);
-            const container = document.getElementById("pagination");
-            container.innerHTML = Array.from({length: total}, (_, i) => `<button class="page-btn ${i+1===currentPage?'active':''}" onclick="currentPage=${i+1};render();window.scrollTo({top:300,behavior:'smooth'})">${i+1}</button>`).join('');
         }
 
         function changeFilter(c) {
