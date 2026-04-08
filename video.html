@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | KV Voice Studio</title>
+    <title>Video Portfolio | KV Voice Studio</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #0b0f1a; --card-bg: #161b2a; --primary: #f43f5e; --text: #f8fafc; --text-dim: #94a3b8; }
@@ -12,22 +12,16 @@
         .logo { font-weight: 800; color: #fff; text-decoration: none; font-size: 1.2rem; }
         .nav-links a { text-decoration: none; color: var(--text-dim); margin-left: 20px; font-weight: 600; font-size: 0.9rem; }
         .nav-links a.active { color: var(--primary); }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px; }
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
         .video-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-        .video-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        
         .video-wrapper { width: 100%; aspect-ratio: 16/9; background: #000; position: relative; }
         video { width: 100%; height: 100%; object-fit: cover; display: block; }
-
         .video-info { padding: 20px; text-align: center; }
         .video-info h3 { margin: 0; font-size: 1.1rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
-
         .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 50px; }
         .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 10px 18px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
         .page-btn.active { background: var(--primary); color: white; }
-
         footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem; }
     </style>
 </head>
@@ -39,32 +33,23 @@
             <a href="video.html" class="active">Video Portfolio</a>
         </div>
     </nav>
-
     <main class="container">
         <h1 style="text-align:center; margin-bottom: 50px; letter-spacing: -1.5px;">KV Voice Studio <span style="color:var(--primary)">Portfolio</span></h1>
-        
-        <div id="videoGrid" class="video-grid">
-            <p style="grid-column: 1/-1; text-align: center; opacity: 0.5;">Memuat portfolio...</p>
-        </div>
-        
+        <div id="videoGrid" class="video-grid"></div>
         <div id="pagination" class="pagination"></div>
     </main>
-
     <footer>Setiap project didukung oleh tim Lokalisasi, Subtitling, dan Transkreasi kami.</footer>
-
     <script>
         const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTg3rjqHoD36dUM0PU33sGqYnovngVpCfBS6A2EYngYMeU8vuvXLRRuD_Dd8utXGckTMKQB_IKtqW5H/pub?output=csv";
-        const LOGO_FALLBACK = "logo.png"; // Gunakan logo.png di folder website Anda
+        const LOGO_FALLBACK = "logo.png";
 
-        let videoData = [];
-        let currentPage = 1;
-        const itemsPerPage = 8;
-
-        function fixLink(url) {
-            if (!url || url.trim() === "" || url.trim() === "-") return null;
+        function fixDropbox(url) {
+            if (!url || url.trim() === "" || url.trim() === "-" || url.includes("drive.google.com")) return null;
             let link = url.trim();
-            if (link.includes("dropbox.com")) return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace("dl=0", "raw=1");
-            return link;
+            if (link.includes("dropbox.com")) {
+                return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace(/dl=[0-9]+/, "raw=1");
+            }
+            return null;
         }
 
         async function loadVideos() {
@@ -72,38 +57,29 @@
                 const res = await fetch(`${CSV_URL}&t=${new Date().getTime()}`);
                 const text = await res.text();
                 const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
-                
-                videoData = rows.slice(1).map(row => {
+                let videoData = rows.slice(1).map(row => {
                     const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
                     return { 
-                        video: fixLink(cols[13]), // Kolom N
-                        thumb: fixLink(cols[11])  // Kolom L
+                        video: fixDropbox(cols[13]), // Indeks 13 Video
+                        thumb: fixDropbox(cols[11])  // Indeks 11 Foto
                     };
-                }).filter(v => v.video);
-                render();
+                }).filter(v => v.video !== null);
+
+                renderVideos(videoData);
             } catch (e) { console.error(e); }
         }
 
-        function render() {
+        function renderVideos(data) {
             const grid = document.getElementById("videoGrid");
-            const items = videoData.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage);
-            
-            grid.innerHTML = items.map(v => `
+            grid.innerHTML = data.map(v => `
                 <div class="video-card">
                     <div class="video-wrapper">
                         <video controls preload="none" poster="${v.thumb || LOGO_FALLBACK}" playsinline>
                             <source src="${v.video}" type="video/mp4">
                         </video>
                     </div>
-                    <div class="video-info">
-                        <h3>Video Demo KV Voice</h3>
-                    </div>
+                    <div class="video-info"><h3>Video Demo KV Voice</h3></div>
                 </div>
-            `).join('');
-            
-            const total = Math.ceil(videoData.length / itemsPerPage);
-            document.getElementById("pagination").innerHTML = Array.from({length: total}, (_, i) => `
-                <button class="page-btn ${i+1===currentPage?'active':''}" onclick="currentPage=${i+1};render();window.scrollTo({top:0,behavior:'smooth'})">${i+1}</button>
             `).join('');
         }
         loadVideos();
