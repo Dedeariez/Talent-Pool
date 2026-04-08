@@ -104,7 +104,10 @@
 
         async function loadData() {
             try {
-                const res = await fetch(CSV_URL);
+                // PERBAIKAN DI SINI: Menambahkan Cache Buster dinamis menggunakan timestamp waktu saat ini
+                const freshUrl = `${CSV_URL}&t=${new Date().getTime()}`;
+                const res = await fetch(freshUrl);
+                
                 const text = await res.text();
                 const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
                 
