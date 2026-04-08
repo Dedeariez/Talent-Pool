@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KV Voice Studio | Talent Directory</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">KV <span>VOICE</span></div>
+        <a href="https://wa.me/6287823430778" class="wa-nav">Hubungi Kami</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <span class="badge">Official Talent Directory</span>
+            <h1>Voice Over <span class="highlight">Professional</span></h1>
+            <p>Localization, Subtitling, & Transcreations Expert.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="filter-bar">
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Cari nama talent...">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <div class="tabs">
+                <button onclick="setFilter('all')" class="tab-btn active">Semua</button>
+                <button onclick="setFilter('Male')" class="tab-btn">Male</button>
+                <button onclick="setFilter('Female')" class="tab-btn">Female</button>
+            </div>
+        </div>
+
+        <div id="talentGrid" class="grid">
+            <div class="loading">Memuat database talent...</div>
+        </div>
+    </main>
+
+    <script src="scr
