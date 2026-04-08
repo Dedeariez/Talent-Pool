@@ -86,7 +86,7 @@
         const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTg3rjqHoD36dUM0PU33sGqYnovngVpCfBS6A2EYngYMeU8vuvXLRRuD_Dd8utXGckTMKQB_IKtqW5H/pub?output=csv";
         
         let allTalents = [];
-        let filteredTalents = [];
+        let filteredTalents =[];
         let currentPage = 1;
         const itemsPerPage = 8; // DIUBAH KE 8 TALENT PER HALAMAN
         let currentFilter = "all";
@@ -104,16 +104,16 @@
 
         async function loadData() {
             try {
-                // PERBAIKAN DI SINI: Menambahkan Cache Buster dinamis menggunakan timestamp waktu saat ini
-                const freshUrl = `${CSV_URL}&t=${new Date().getTime()}`;
-                const res = await fetch(freshUrl);
+                // PERBAIKAN DI SINI: Menambahkan Cache-Buster & Header Cache No-Store
+                const cacheBusterUrl = `${CSV_URL}&t=${new Date().getTime()}`;
+                const res = await fetch(cacheBusterUrl, { cache: "no-store" });
                 
                 const text = await res.text();
                 const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
                 
                 allTalents = rows.slice(1).map(row => {
                     const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
-                    let samples = [];
+                    let samples =[];
                     for (let i = 4; i <= 10; i++) { 
                         let a = fixLink(cols[i]); 
                         if (a) samples.push(a); 
