@@ -16,8 +16,21 @@
         .nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary); }
         
-        .wa-nav { background: var(--wa-green); color: #fff; padding: 10px 24px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); border: 2px solid rgba(255,255,255,0.1); transition: 0.3s; }
-        .wa-nav:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
+        /* WhatsApp Button (White Text) */
+        .wa-nav { 
+            background: var(--wa-green) !important; 
+            color: #ffffff !important; 
+            padding: 10px 24px; 
+            border-radius: 12px; 
+            text-decoration: none !important; 
+            font-weight: 800; 
+            font-size: 0.95rem; 
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); 
+            transition: 0.3s; 
+            border: 2px solid rgba(255,255,255,0.1); 
+            display: inline-block;
+        }
+        .wa-nav:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); color: #ffffff !important; }
 
         /* Hero */
         .hero { padding: 80px 20px 60px; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, #0b0f1a 70%); }
@@ -41,12 +54,11 @@
         .card h3 { margin: 0; font-size: 1.2rem; font-weight: 800; }
         .tag { font-size: 0.6rem; background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 3px 10px; border-radius: 6px; font-weight: 800; text-transform: uppercase; }
 
-        /* Audio & Buttons */
+        /* Audio Player Styling */
         .samples-container { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; flex-grow: 1; }
         .sample-box { background: rgba(255,255,255,0.03); padding: 8px; border-radius: 10px; }
         .sample-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
         .sample-label { font-size: 8px; color: var(--primary); font-weight: 800; text-transform: uppercase; }
-        .dl-link { font-size: 8px; color: var(--text-dim); text-decoration: none; font-weight: 700; }
         audio { width: 100%; height: 25px; filter: invert(100%) hue-rotate(180deg) brightness(1.5); }
         
         .book-btn { background: var(--wa-green); color: #fff; text-decoration: none; text-align: center; padding: 10px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; margin-top: 15px; transition: 0.3s; }
@@ -57,6 +69,7 @@
         .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 6px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; }
         .page-btn.active { background: var(--primary); color: #000; }
         .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 8%; background: #090d16; color: var(--text-dim); text-align: center; font-size: 0.85rem; }
+        .footer b { color: var(--text); display: block; margin-bottom: 5px; font-size: 1rem; }
         .loading { grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dim); }
     </style>
 </head>
@@ -69,12 +82,10 @@
             <a href="https://wa.me/6287823430778" class="wa-nav">Contact Us</a>
         </div>
     </nav>
-
     <header class="hero">
         <h1>Talent <span class="highlight">Directory</span></h1>
         <p>"Your Trusted Partner in Audio & Voice Production"</p>
     </header>
-
     <main class="container">
         <div class="filter-bar">
             <input type="text" id="searchInput" placeholder="Search talent name...">
@@ -88,20 +99,16 @@
         <div id="talentGrid" class="grid"><div class="loading">Loading database...</div></div>
         <div id="pagination" class="pagination"></div>
     </main>
-
     <footer class="footer">
-        <p><b>PT DKV VOICE STUDIO</b></p>
+        <b>PT DKV VOICE STUDIO</b>
         <p>Jl. Kp. Ciwangun Indah Camp, Kab. Bandung Barat, West Java, Indonesia.</p>
         <p>&copy; 2025 KV Voice Studio. All rights reserved.</p>
     </footer>
-
     <script>
         const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTg3rjqHoD36dUM0PU33sGqYnovngVpCfBS6A2EYngYMeU8vuvXLRRuD_Dd8utXGckTMKQB_IKtqW5H/pub?output=csv";
         let allTalents = [], filteredTalents = [], currentPage = 1, itemsPerPage = 8, currentFilter = "all";
-
         function fixLink(url) {
-            if (!url) return null;
-            let link = url.trim();
+            if (!url) return null; let link = url.trim();
             if (link.includes("dropbox.com")) return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace(/\?dl=[01]/, "?raw=1").replace("&dl=0", "&raw=1");
             if (link.includes("drive.google.com")) {
                 const match = link.match(/[?&]id=([^&]+)/) || link.match(/\/d\/(.*?)\//) || link.match(/\/file\/d\/(.*?)$/);
@@ -109,13 +116,12 @@
             }
             return null;
         }
-
         async function loadData() {
             try {
                 const res = await fetch(CSV_URL); const text = await res.text();
                 const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
                 allTalents = rows.slice(1).map(row => {
-                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
+                    const cols = row.split(/,(?=(?:(?:[^\"]*\"){2})*[^\"]*$)/).map(c => c.replace(/\"/g, "").trim());
                     let samples = []; for (let i = 3; i <= 9; i++) { let a = fixLink(cols[i]); if (a) samples.push(a); }
                     samples = samples.slice(0, 5);
                     let photo = fixLink(cols[11]), name = cols[12] || "Unnamed", rawCat = (cols[2] || "").toLowerCase();
@@ -126,13 +132,7 @@
                 applyFilterAndRender();
             } catch (e) { document.getElementById("talentGrid").innerHTML = "Error loading data."; }
         }
-
-        function applyFilterAndRender() {
-            const search = document.getElementById("searchInput").value.toLowerCase();
-            filteredTalents = allTalents.filter(t => (currentFilter === "all" || t.gender === currentFilter) && t.name.toLowerCase().includes(search));
-            currentPage = 1; renderPage();
-        }
-
+        function applyFilterAndRender() { filteredTalents = allTalents.filter(t => (currentFilter === "all" || t.gender === currentFilter) && t.name.toLowerCase().includes(document.getElementById("searchInput").value.toLowerCase())); currentPage = 1; renderPage(); }
         function renderPage() {
             const grid = document.getElementById("talentGrid"); grid.innerHTML = "";
             const start = (currentPage - 1) * itemsPerPage, items = filteredTalents.slice(start, start + itemsPerPage);
@@ -142,7 +142,7 @@
                 const waMsg = encodeURIComponent(`Hi KV Voice Studio, I want to book talent: ${t.name}.`);
                 let audioHTML = t.samples.map((link, i) => `
                     <div class="sample-box">
-                        <div class="sample-header"><label class="sample-label">Sample ${i+1}</label><a href="${link.replace('raw=1', 'dl=1')}" class="dl-link" target="_blank">⇓ DOWNLOAD</a></div>
+                        <div class="sample-header"><label class="sample-label">Sample ${i+1}</label></div>
                         <audio controls preload="none"><source src="${link}"></audio>
                     </div>`).join("");
                 div.innerHTML = `<img src="${t.photo || 'https://via.placeholder.com/400x500/161b2a/38bdf8?text=KV+Voice'}" class="talent-image" loading="lazy">
@@ -156,7 +156,6 @@
             const players = document.querySelectorAll("audio");
             players.forEach(p => p.addEventListener("play", () => players.forEach(o => { if(o !== p) o.pause(); })));
         }
-
         function renderPagination() {
             const div = document.getElementById("pagination"); const total = Math.ceil(filteredTalents.length / itemsPerPage);
             div.innerHTML = ""; if (total <= 1) return;
@@ -165,7 +164,6 @@
                 btn.onclick = () => { currentPage = i; renderPage(); window.scrollTo({ top: 400, behavior: 'smooth' }); }; div.appendChild(btn);
             }
         }
-
         function changeFilter(g) { currentFilter = g; document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-' + g).classList.add('active'); applyFilterAndRender(); }
         document.getElementById("searchInput").addEventListener("input", applyFilterAndRender);
         loadData();
