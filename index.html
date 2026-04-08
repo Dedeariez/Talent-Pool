@@ -19,15 +19,11 @@
         .wa-nav { background: var(--wa-green); color: #fff; padding: 10px 24px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); border: 2px solid rgba(255,255,255,0.1); transition: 0.3s; }
         .wa-nav:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
 
-        /* Hero & Trusted By */
-        .hero { padding: 60px 20px 40px; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, #0b0f1a 70%); }
+        /* Hero */
+        .hero { padding: 80px 20px 60px; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, #0b0f1a 70%); }
         .hero h1 { font-size: 2.8rem; margin: 0; letter-spacing: -2px; }
         .highlight { color: var(--primary); text-shadow: 0 0 30px rgba(56, 189, 248, 0.3); }
         .hero p { color: var(--text-dim); margin-top: 10px; font-size: 1rem; font-style: italic; }
-        
-        .trusted-by { padding: 30px 8%; text-align: center; background: rgba(255,255,255,0.02); margin-bottom: 40px; }
-        .trusted-by h4 { color: var(--text-dim); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
-        .brand-grid { display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; opacity: 0.5; font-weight: 800; font-size: 1rem; }
 
         /* Main Content */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px; }
@@ -79,13 +75,6 @@
         <p>"Your Trusted Partner in Audio & Voice Production"</p>
     </header>
 
-    <section class="trusted-by">
-        <h4>Trusted by Industry Leaders</h4>
-        <div class="brand-grid">
-            <span>LIKE NASTYA</span> <span>DONGHUA</span> <span>TRANS TV</span> <span>inDRIVE</span>
-        </div>
-    </section>
-
     <main class="container">
         <div class="filter-bar">
             <input type="text" id="searchInput" placeholder="Search talent name...">
@@ -130,7 +119,7 @@
                     let samples = []; for (let i = 3; i <= 9; i++) { let a = fixLink(cols[i]); if (a) samples.push(a); }
                     samples = samples.slice(0, 5);
                     let photo = fixLink(cols[11]), name = cols[12] || "Unnamed", rawCat = (cols[2] || "").toLowerCase();
-                    let g = rawCat.includes("female") ? "Female" : (rawCat.includes("male") ? "Male" : "Kid");
+                    let g = "Kid"; if (rawCat.includes("female")) g = "Female"; else if (rawCat.includes("male")) g = "Male";
                     return { name, gender: g, displayGender: cols[2], samples, photo };
                 }).filter(t => t.samples.length > 0);
                 allTalents.sort((a, b) => a.name.localeCompare(b.name));
