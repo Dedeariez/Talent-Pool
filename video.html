@@ -1,103 +1,99 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Showcase | KV Voice Studio</title>
+    <title>Video Portfolio | KV Voice Studio</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #0b0f1a; --card-bg: #161b2a; --primary: #f43f5e; --text: #f8fafc; --text-dim: #94a3b8; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(11, 15, 26, 0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .logo { font-weight: 800; color: #fff; text-decoration: none; }
-        .nav-links a { text-decoration: none; color: var(--text-dim); margin-left: 20px; font-weight: 600; font-size: 0.9rem; }
-        .nav-links a.active { color: var(--primary); }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .video-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        :root { --bg: #0b0f1a; --card-bg: #161b2a; --primary: #38bdf8; --wa-green: #25D366; --text: #f8fafc; --text-dim: #94a3b8; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
         
-        .video-wrapper { width: 100%; aspect-ratio: 16/9; background: #000; }
-        video { width: 100%; height: 100%; object-fit: cover; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 8%; background: rgba(11, 15, 26, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo img { height: 50px; width: auto; display: block; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .wa-nav { background: var(--wa-green); color: #fff; padding: 10px 24px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); border: 2px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .wa-nav:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
 
-        .video-info { padding: 20px; }
-        .video-info h3 { margin: 0; font-size: 1.1rem; font-weight: 800; color: #fff; }
-        .video-tag { font-size: 0.7rem; color: var(--primary); font-weight: 800; text-transform: uppercase; margin-bottom: 5px; display: block; }
+        .hero { padding: 60px 20px 40px; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, #0b0f1a 70%); }
+        .hero h1 { font-size: 2.8rem; margin: 0; letter-spacing: -2px; }
+        .highlight { color: var(--primary); text-shadow: 0 0 30px rgba(56, 189, 248, 0.3); }
 
-        .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 50px; }
-        .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 10px 18px; border-radius: 12px; cursor: pointer; }
-        .page-btn.active { background: var(--primary); color: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 100px; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 40px; }
+        @media (max-width: 600px) { .video-grid { grid-template-columns: 1fr; } }
 
-        footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.8rem; }
+        .video-card { background: var(--card-bg); border-radius: 24px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; text-align: center; }
+        .video-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        
+        .video-wrapper { width: 100%; border-radius: 16px; overflow: hidden; background: #000; position: relative; padding-top: 56.25%; margin-bottom: 15px; }
+        .video-wrapper iframe, .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        .card-info h3 { margin: 0; font-size: 1.1rem; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 8%; background: #090d16; color: var(--text-dim); text-align: center; font-size: 0.85rem; }
+        .footer b { color: var(--text); display: block; margin-bottom: 5px; font-size: 1rem; }
+        .loading { grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dim); }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="logo">KV VOICE STUDIO</a>
+        <div class="logo"><img src="logo.png" alt="KV Voice Studio"></div>
         <div class="nav-links">
-            <a href="index.html">Audio Catalog</a>
+            <a href="index.html">Audio Talents</a>
             <a href="video.html" class="active">Video Showcase</a>
+            <a href="https://wa.me/6287823430778" class="wa-nav">Contact Us</a>
         </div>
     </nav>
-
+    <header class="hero">
+        <h1>Video <span class="highlight">Portfolio</span></h1>
+        <p>"Your Trusted Partner in Audio & Voice Production"</p>
+    </header>
     <main class="container">
-        <h1 style="text-align:center; margin-bottom: 40px;">Video <span style="color:var(--primary)">Showcase</span></h1>
-        <div id="videoGrid" class="video-grid"></div>
-        <div id="pagination" class="pagination"></div>
+        <div id="videoGrid" class="video-grid"><div class="loading">Loading portofolio...</div></div>
     </main>
-
-    <footer>Setiap project didukung oleh tim Lokalisasi, Subtitling, dan Transkreasi kami.</footer>
-
+    <footer class="footer">
+        <b>PT DKV VOICE STUDIO</b>
+        <p>Jl. Kp. Ciwangun Indah Camp, Kab. Bandung Barat, West Java, Indonesia.</p>
+        <p>&copy; 2025 KV Voice Studio. All rights reserved.</p>
+    </footer>
     <script>
         const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTg3rjqHoD36dUM0PU33sGqYnovngVpCfBS6A2EYngYMeU8vuvXLRRuD_Dd8utXGckTMKQB_IKtqW5H/pub?output=csv";
-        const LOGO_URL = "logo.png"; // PASTIKAN FILE LOGO.PNG ADA DI FOLDER YANG SAMA
-        
-        let videoData = [];
-        let currentPage = 1;
-        const itemsPerPage = 8;
-
-        function fixMedia(url) {
-            if (!url || url.trim() === "" || url.trim() === "-") return null;
-            let link = url.trim();
-            if (link.includes("dropbox.com")) return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace(/\?dl=[01]/, "?raw=1");
-            return link;
+        function fixLink(url, isVideo = false) {
+            if (!url) return null; let link = url.trim();
+            if (isVideo && (link.includes("youtube.com") || link.includes("youtu.be"))) {
+                let id = link.includes("v=") ? link.split("v=")[1].split("&")[0] : link.split("/").pop().split("?")[0];
+                return `https://www.youtube.com/embed/${id}`;
+            }
+            if (link.includes("dropbox.com")) return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace(/\?dl=[01]/, "?raw=1").replace("&dl=0", "&raw=1");
+            if (link.includes("drive.google.com")) {
+                const match = link.match(/[?&]id=([^&]+)/) || link.match(/\/d\/(.*?)\//) || link.match(/\/file\/d\/(.*?)$/);
+                if (match) return `https://docs.google.com/uc?export=view&id=${match[1].split(/[?&/]/)[0]}`;
+            }
+            return null;
         }
-
         async function loadVideos() {
-            const res = await fetch(`${CSV_URL}&t=${new Date().getTime()}`);
-            const text = await res.text();
-            const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
-            videoData = rows.slice(1).map(row => {
-                const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
-                return { category: cols[2], video: fixMedia(cols[13]), thumb: fixMedia(cols[11]) };
-            }).filter(v => v.video);
-            render();
-        }
-
-        function render() {
             const grid = document.getElementById("videoGrid");
-            grid.innerHTML = videoData.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage).map(v => `
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <video controls preload="none" poster="${v.thumb || LOGO_URL}">
-                            <source src="${v.video}" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="video-info">
-                        <span class="video-tag">${v.category}</span>
-                        <h3>Video Demo KV Voice</h3>
-                    </div>
-                </div>
-            `).join('');
-            renderPagination();
+            try {
+                const res = await fetch(CSV_URL); const text = await res.text();
+                const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
+                let vData = rows.slice(1).map(row => {
+                    const cols = row.split(/,(?=(?:(?:[^\"]*\"){2})*[^\"]*$)/).map(c => c.replace(/\"/g, "").trim());
+                    // Link Video ada di Kolom N (Index 13)
+                    let videoLink = fixLink(cols[13], true); 
+                    return { title: "Portfolio KV Voice Studio", video: videoLink };
+                }).filter(v => v.video);
+                grid.innerHTML = "";
+                vData.forEach(v => {
+                    const div = document.createElement("div"); div.className = "video-card";
+                    let player = v.video.includes("embed") ? `<iframe src="${v.video}" allowfullscreen></iframe>` : `<video controls preload="none"><source src="${v.video}"></video>`;
+                    div.innerHTML = `<div class="video-wrapper">${player}</div><div class="card-info"><h3>${v.title}</h3></div>`;
+                    grid.appendChild(div);
+                });
+            } catch (e) { grid.innerHTML = "<div class='loading'>Failed to load videos.</div>"; }
         }
-
-        function renderPagination() {
-            const container = document.getElementById("pagination");
-            const total = Math.ceil(videoData.length / itemsPerPage);
-            container.innerHTML = Array.from({length: total}, (_, i) => `<button class="page-btn ${i+1===currentPage?'active':''}" onclick="currentPage=${i+1};render();window.scrollTo({top:0,behavior:'smooth'})">${i+1}</button>`).join('');
-        }
-
         loadVideos();
     </script>
 </body>
