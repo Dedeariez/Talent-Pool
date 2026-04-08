@@ -8,24 +8,36 @@
     <style>
         :root { --bg: #0b0f1a; --card-bg: #161b2a; --primary: #38bdf8; --text: #f8fafc; --text-dim: #94a3b8; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        /* Navbar */
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 8%; background: rgba(11, 15, 26, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .logo img { height: 50px; width: auto; display: block; }
         .nav-links { display: flex; gap: 25px; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary); }
         .wa-nav { background: var(--primary); color: #000; padding: 8px 18px; border-radius: 10px; font-weight: 700; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
+
+        /* Hero Section */
         .hero { padding: 60px 20px 40px; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, #0b0f1a 70%); }
         .hero h1 { font-size: 2.8rem; margin: 0; letter-spacing: -2px; }
         .highlight { color: var(--primary); text-shadow: 0 0 30px rgba(56, 189, 248, 0.3); }
+        .hero p { color: var(--text-dim); margin-top: 10px; font-size: 1rem; }
+
+        /* Grid Layout */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 100px; }
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 40px; }
         @media (max-width: 600px) { .video-grid { grid-template-columns: 1fr; } }
-        .video-card { background: var(--card-bg); border-radius: 24px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
+
+        /* Video Card Styling */
+        .video-card { background: var(--card-bg); border-radius: 24px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; text-align: center; }
         .video-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        
         .video-wrapper { width: 100%; border-radius: 16px; overflow: hidden; background: #000; position: relative; padding-top: 56.25%; margin-bottom: 15px; }
         .video-wrapper iframe, .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .card-info h3 { margin: 0; font-size: 1.2rem; color: #fff; line-height: 1.4; }
-        .card-info h3 span { color: var(--primary); font-weight: 800; display: block; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 1px; }
+
+        /* Judul Portfolio */
+        .card-info h3 { margin: 0; font-size: 1.1rem; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        
         .loading { grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dim); }
     </style>
 </head>
@@ -38,10 +50,12 @@
             <a href="https://wa.me/6287823430778" class="wa-nav">Hubungi Kami</a>
         </div>
     </nav>
+
     <header class="hero">
         <h1>Video <span class="highlight">Portfolio</span></h1>
-        <p>Featured Professional Voice Solution Projects</p>
+        <p>Your Comprehensive Voice Solution Partner</p>
     </header>
+
     <main class="container">
         <div id="videoGrid" class="video-grid"><div class="loading">Memuat portofolio...</div></div>
     </main>
@@ -52,10 +66,12 @@
         function fixLink(url, isVideo = false) {
             if (!url || url.trim() === "" || url.trim() === "-") return null;
             let link = url.trim();
+            // YouTube Handler
             if (isVideo && (link.includes("youtube.com") || link.includes("youtu.be"))) {
                 let videoId = link.includes("v=") ? link.split("v=")[1].split("&")[0] : link.split("/").pop().split("?")[0];
                 return `https://www.youtube.com/embed/${videoId}`;
             }
+            // Dropbox Handler
             if (link.includes("dropbox.com")) return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace(/\?dl=[01]/, "?raw=1").replace("&dl=0", "&raw=1");
             return link;
         }
@@ -66,26 +82,36 @@
                 const res = await fetch(CSV_URL);
                 const text = await res.text();
                 const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
+                
                 let videoData = rows.slice(1).map(row => {
                     const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, "").trim());
                     
-                    let title = cols[12] || "Portfolio Showcase"; // Nama Talent M (Index 12)
-                    let video = fixLink(cols[13], true); // Link Video N (Index 13)
+                    // Link Video diambil dari Kolom N (Index 13)
+                    let video = fixLink(cols[13], true); 
                     
-                    return { title, video, prefix: "KV Voice Studio Portfolio" };
+                    return { title: "Portfolio KV Voice Studio", video: video };
                 }).filter(v => v.video);
-
-                videoData.sort((a, b) => a.title.localeCompare(b.title));
 
                 grid.innerHTML = "";
                 videoData.forEach(v => {
                     const div = document.createElement("div");
                     div.className = "video-card";
-                    let player = v.video.includes("embed") ? `<iframe src="${v.video}" allowfullscreen></iframe>` : `<video controls><source src="${v.video}"></video>`;
-                    div.innerHTML = `<div class="video-wrapper">${player}</div><div class="card-info"><h3><span>${v.prefix}</span>${v.title}</h3></div>`;
+                    
+                    let player = v.video.includes("embed") 
+                        ? `<iframe src="${v.video}" allowfullscreen></iframe>` 
+                        : `<video controls preload="none"><source src="${v.video}"></video>`;
+
+                    div.innerHTML = `
+                        <div class="video-wrapper">${player}</div>
+                        <div class="card-info">
+                            <h3>${v.title}</h3>
+                        </div>
+                    `;
                     grid.appendChild(div);
                 });
-            } catch (e) { grid.innerHTML = "<div class='loading'>Gagal memuat video.</div>"; }
+            } catch (e) { 
+                grid.innerHTML = "<div class='loading'>Gagal memuat video.</div>"; 
+            }
         }
         loadVideos();
     </script>
