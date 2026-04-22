@@ -26,6 +26,11 @@ CLIENT_PROFILES = {
         dubbing_rate_idr_per_min=75_000,
         translate_rate_idr_per_min=15_000,
     ),
+    "Shirley Vdus": ClientProfile(
+        client_rate_usd_per_min=10.0,
+        dubbing_rate_idr_per_min=100_000,
+        translate_rate_idr_per_min=0,
+    ),
 }
 
 
@@ -72,7 +77,7 @@ def pick_client() -> str:
         for i, client in enumerate(clients, start=1):
             print(f"{i}. {client}")
 
-        choice = input("Masukkan angka klien (1-3): ").strip()
+        choice = input(f"Masukkan angka klien (1-{len(clients)}): ").strip()
         if choice.isdigit() and 1 <= int(choice) <= len(clients):
             return clients[int(choice) - 1]
 
