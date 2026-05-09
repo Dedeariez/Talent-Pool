@@ -1,196 +1,311 @@
-[ { "filename": "index.html", "content": "\n<html lang="en">\n\n <meta
-charset="UTF-8">\n <meta name="viewport" content="width=device-width,
-initial-scale=1.0">\n \n \n Native Indonesian Voice Over & Dubbing Studio | KV
-Voice Studio\n <meta name="description" content="KV Voice Studio provides
-broadcast-quality native Indonesian voice-over & expert dubbing services.
-Featuring Male, Female, and genuine Kid voices.">\n <meta name="keywords"
-content="Indonesian Voice Over, Native Indonesian Voice Talent, Dubbing
-Indonesia, Localization Services Asia">\n\n <link
-href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
-rel="stylesheet">\n \n :root { \n --bg: #0b0f1a; \n --card-bg: #161b2a; \n
---primary: #38bdf8; \n --primary-glow: rgba(56, 189, 248, 0.4);\n --wa-green:
-#25D366; \n --text: #f8fafc; \n --text-dim: #94a3b8; \n }\n\n body { \n
-font-family: 'Plus Jakarta Sans', sans-serif; \n margin: 0; \n background:
-var(--bg); \n color: var(--text); \n line-height: 1.6; \n
--webkit-tap-highlight-color: transparent;\n }\n \n .navbar { \n display: flex;
-\n justify-content: space-between; \n align-items: center; \n padding: 10px 5%;
-\n background: rgba(11, 15, 26, 0.95); \n backdrop-filter: blur(10px); \n
-position: sticky; \n top: 0; \n z-index: 100; \n border-bottom: 1px solid
-rgba(255,255,255,0.05);\n }\n\n .logo img { height: 45px; width: auto; display:
-block; }\n\n .nav-links { display: flex; gap: 15px; align-items: center; }\n
-.nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 600;
-font-size: 0.85rem; transition: 0.3s; }\n .nav-links a.active { color:
-var(--primary); }\n \n .wa-nav { \n background: var(--wa-green) !important;
-color: #ffffff !important; \n padding: 8px 16px; border-radius: 10px; \n
-text-decoration: none !important; font-weight: 800; font-size: 0.8rem; \n
-box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); transition: 0.3s;\n }\n\n .hero
-{ padding: 40px 20px; text-align: center; background: radial-gradient(circle at
-top, #1e293b 0%, #0b0f1a 100%); }\n .badge { background:
-rgba(56, 189, 248, 0.1); color: var(--primary); padding: 5px 12px;
-border-radius: 20px; font-size: 0.65rem; font-weight: 700; margin-bottom: 12px;
-display: inline-block; text-transform: uppercase; letter-spacing: 1px; }\n .hero
-h1 { font-size: 1.8rem; margin: 0; letter-spacing: -1px; line-height: 1.2; }\n
-.highlight { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow);
-}\n .hero p { color: var(--text-dim); margin-top: 10px; font-size: 0.9rem;
-font-style: italic; }\n\n .container { max-width: 1200px; margin: 0 auto;
-padding: 0 15px 40px; }\n \n .filter-bar { \n display: flex; \n flex-direction:
-column; \n gap: 15px; \n margin-bottom: 30px; \n }\n\n #searchInput { \n
-background: var(--card-bg); \n border: 1px solid rgba(255,255,255,0.1); \n
-padding: 12px 15px; border-radius: 12px; color: white; \n width: 100%;
-box-sizing: border-box; outline: none; font-size: 1rem;\n }\n \n /* --- FIXED
-TABS & EYE-FRIENDLY COLOR --- /\n .tabs { \n display: flex; \n background:
-var(--card-bg); \n padding: 5px; \n border-radius: 14px; \n gap: 5px;\n
-border: 1px solid rgba(255,255,255,0.05);\n overflow-x: auto;\n
--ms-overflow-style: none;\n scrollbar-width: none;\n }\n
-.tabs::-webkit-scrollbar { display: none; }\n\n .tab-btn { \n flex: 1;\n
-background: transparent; \n border: none; \n color: var(--text-dim); \n cursor:
-pointer; \n font-weight: 700; \n padding: 12px 15px; \n border-radius: 10px; \n
-transition: all 0.3s ease;\n font-size: 0.85rem;\n white-space: nowrap;\n
-min-width: 70px;\n }\n / Active style: White text on blue glow, easy on the eyes
-/\n .tab-btn.active { \n background: var(--primary); \n color: #ffffff; \n
-box-shadow: 0 4px 15px var(--primary-glow);\n }\n\n .grid { \n display: grid; \n
-grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); \n gap: 20px; \n
-}\n\n .card { \n background: var(--card-bg); border-radius: 18px; padding: 15px;
-\n border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction:
-column; \n }\n\n .talent-image { \n width: 100%; height: 280px; \n object-fit:
-cover; border-radius: 12px; \n margin-bottom: 15px; background: #0f172a;
-display: flex; align-items: center; justify-content: center;\n }\n\n .card h3 {
-margin: 0; font-size: 1.1rem; font-weight: 800; }\n .tag { font-size: 0.6rem;
-background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 3px 8px;
-border-radius: 6px; font-weight: 800; text-transform: uppercase; }\n\n
-.samples-container { display: flex; flex-direction: column; gap: 8px;
-margin-top: 12px; flex-grow: 1; }\n .sample-box { background:
-rgba(255,255,255,0.02); padding: 10px; border-radius: 10px; border: 1px solid
-rgba(255,255,255,0.03); }\n .sample-label { font-size: 0.6rem; color:
-var(--primary); font-weight: 800; text-transform: uppercase; margin-bottom: 5px;
-display: block; }\n audio { width: 100%; height: 30px; filter: invert(100%)
-hue-rotate(180deg) brightness(1.5); }\n \n .book-btn { \n background:
-var(--wa-green); color: #fff; text-decoration: none; \n text-align: center;
-padding: 12px; border-radius: 12px; \n font-weight: 800; font-size: 0.85rem;
-margin-top: 15px; display: block;\n }\n\n .pagination { display: flex;
-justify-content: center; gap: 5px; margin-top: 30px; flex-wrap: wrap; }\n
-.page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1);
-color: var(--text); padding: 8px 14px; border-radius: 8px; cursor: pointer;
-font-size: 0.9rem; }\n .page-btn.active { background: var(--primary); color:
-#ffffff; box-shadow: 0 4px 10px var(--primary-glow); }\n\n .footer {
-border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 20px; background:
-#090d16; text-align: center; }\n .team-title { font-size: 1.3rem;
-font-weight: 800; margin-bottom: 25px; }\n .team-grid { \n display: grid; \n
-grid-template-columns: repeat(2, 1fr); \n gap: 20px; margin-bottom: 40px; \n }\n
-.team-member { text-align: center; }\n .team-photo { width: 70px; height: 70px;
-border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid
-var(--card-bg); background: #1e293b; display: inline-flex; align-items: center;
-justify-content: center; }\n .team-member h4 { color: var(--primary); margin: 0;
-font-size: 0.9rem; font-weight: 800; }\n .team-member p { color:
-var(--text-dim); margin: 3px 0; font-size: 0.65rem; font-weight: 600;
-text-transform: uppercase; line-height: 1.2; }\n \n .footer-info {
-font-size: 0.75rem; color: var(--text-dim); margin-top: 20px; border-top: 1px
-solid rgba(255,255,255,0.05); padding-top: 20px;}\n\n .loading {
-grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dim);
-}\n\n @media (min-width: 768px) {\n .navbar { padding: 15px 8%; }\n .logo img {
-height: 60px; }\n .nav-links a { font-size: 0.95rem; }\n .hero {
-padding: 80px 20px 60px; }\n .hero h1 { font-size: 3rem; }\n .filter-bar {
-flex-direction: row; }\n .team-grid { grid-template-columns: repeat(4, 1fr); }\n
-.team-photo { width: 90px; height: 90px; }\n }\n \n\n\n <nav class="navbar">\n
-<div class="logo"><img src="logo.png" alt="KV Voice Studio">\n <div
-class="nav-links">\n <a href="index.html" class="active">Audio\n <a
-href="video.html">Video\n <a href="https://wa.me/6287823430778"
-class="wa-nav">Contact\n \n \n\n <header class="hero">\n <span class="badge">#1
-Indonesian Localization Expert\n The Most Trusted <span class="highlight">Native
-Indonesian Voice Studio\n "Your Trusted Partner in Audio & Voice Production"\n
-\n\n <main class="container">\n <div class="filter-bar">\n <input type="text"
-id="searchInput" placeholder="Search talent name...">\n <div class="tabs">\n
-<button onclick="changeFilter('all')" class="tab-btn active" id="btn-all">All\n
-<button onclick="changeFilter('Male')" class="tab-btn" id="btn-Male">Male\n
-<button onclick="changeFilter('Female')" class="tab-btn"
-id="btn-Female">Female\n <button onclick="changeFilter('Kid')" class="tab-btn"
-id="btn-Kid">Kid\n \n \n <div id="talentGrid" class="grid"><div
-class="loading">Loading database...\n <div id="pagination" class="pagination">\n
-\n\n <footer class="footer">\n <h2 class="team-title">Our <span
-class="highlight">Core Team\n <div class="team-grid">\n <div
-class="team-member">\n <img
-src="https://www.dropbox.com/scl/fi/u61rmkyd5yg4ghmqynmoq/IMG_20191019_141957.jpg?rlkey=8hs1djk1c4ejuyghws0hno4j5&raw=1"
-class="team-photo" alt="Dede Ariez" onerror="handleImageError(this, 'DA')">\n
-Dede Ariez\n Founder\n \n <div class="team-member">\n <img
-src="https://www.dropbox.com/scl/fi/195c9i3c7kcwx8tohbk7z/Gemini_Generated_Image_tade4mtade4mtade.png?rlkey=ju6iclnjn7b840g757zxzqwzf&raw=1"
-class="team-photo" alt="Rosa Rosana" onerror="handleImageError(this, 'RR')">\n
-Rosa Rosana\n Project Manager\n \n <div class="team-member">\n <img
-src="https://www.dropbox.com/scl/fi/195c9i3c7kcwx8tohbk7z/Gemini_Generated_Image_tade4mtade4mtade.png?rlkey=ju6iclnjn7b840g757zxzqwzf&raw=1"
-class="team-photo" alt="Ryan Kurnia" onerror="handleImageError(this, 'RK')">\n
-Ryan Kurnia\n Head Editor\n \n <div class="team-member">\n <img
-src="https://www.dropbox.com/scl/fi/195c9i3c7kcwx8tohbk7z/Gemini_Generated_Image_tade4mtade4mtade.png?rlkey=ju6iclnjn7b840g757zxzqwzf&raw=1"
-class="team-photo" alt="Annida" onerror="handleImageError(this, 'AN')">\n
-Annida\n Head of Localization\n \n \n <div class="footer-info">\n KV VOICE
-STUDIO\n Jl. Kp. Ciwangun Indah Camp, Bandung Barat, Indonesia.\n © 2025 KV
-Voice Studio. All rights reserved.\n \n \n\n \n const CSV_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTg3rjqHoD36dUM0PU33sGqYnovngVpCfBS6A2EYngYMeU8vuvXLRRuD_Dd8utXGckTMKQB_IKtqW5H/pub?output=csv";\n
-let allTalents = [], filteredTalents = [], currentPage = 1, itemsPerPage = 8,
-currentFilter = "all";\n\n function handleImageError(img, initials) {\n
-img.onerror = null;\n const svg = <svg xmlns=\"http://www.w3.org/2000/svg\"
-width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><rect width=\"100\"
-height=\"100\" fill=\"#161b2a\"/><text x=\"50%\" y=\"50%\"
-dominant-baseline=\"middle\" text-anchor=\"middle\" fill=\"#38bdf8\"
-font-family=\"sans-serif\" font-size=\"30\"
-font-weight=\"bold\">${initials}</text></svg>;\n img.src =
-'data:image/svg+xml;base64,' + btoa(svg);\n }\n\n function fixLink(url) {\n if
-(!url) return null; let link = url.trim();\n if (link.includes("dropbox.com"))
-return link.replace("www.dropbox.com",
-"dl.dropboxusercontent.com").replace(/\?dl=[01]/, "?raw=1").replace("&dl=0",
-"&raw=1");\n if (link.includes("drive.google.com")) {\n const match =
-link.match(/[?&]id=([^&]+)/) || link.match(/\/d\/(.?)\/ /) ||
-link.match(/\/file\/d\/(.*?)/);\n                if (match) return `https://docs.google.com/uc?export=view&id={match[1].split(/[?&/]/)[0]};\n
-}\n return null;\n }\n\n async function loadData() {\n try {\n const res = await
-fetch(CSV_URL); const text = await res.text();\n const rows =
-text.split(/\\r?\\n/).filter(r => r.trim() !== \"\");\n const seenNames = new
-Set();\n const cleanData = [];\n rows.slice(1).forEach(row => {\n const cols =
-row.split(/,(?=(?:(?:[^\"]*\"){2})*[^\"]*$)/).map(c => c.replace(/\"/g,
-\"\").trim());\n let rawName = cols[12] || cols[2] || \"Unnamed\";\n let
-dedupeKey = rawName.trim().toLowerCase();\n if (!seenNames.has(dedupeKey)) {\n
-let samples = []; for (let i = 3; i <= 9; i++) { let a = fixLink(cols[i]); if
-(a) samples.push(a); }\n samples = samples.slice(0, 5);\n if (samples.length
-> 0) {\n seenNames.add(dedupeKey);\n let photo = fixLink(cols[11]), rawCat =
-(cols[2] || \"\").toLowerCase();\n let g = \"Kid\"; if
-(rawCat.includes(\"female\")) g = \"Female\"; else if
-(rawCat.includes(\"male\")) g = \"Male\";\n cleanData.push({ name: rawName,
-gender: g, displayGender: cols[2], samples, photo });\n }\n }\n });\n allTalents
-= cleanData.sort((a, b) => a.name.localeCompare(b.name));\n
-applyFilterAndRender();\n } catch (e) {
-document.getElementById(\"talentGrid\").innerHTML = \"Error loading data.\"; }\n
-}\n\n function applyFilterAndRender() { filteredTalents = allTalents.filter(t =>
-(currentFilter === \"all\" || t.gender === currentFilter) &&
-t.name.toLowerCase().includes(document.getElementById(\"searchInput\").value.toLowerCase()));
-currentPage = 1; renderPage(); }\n \n function renderPage() {\n const grid =
-document.getElementById(\"talentGrid\"); grid.innerHTML = \"\";\n const start =
-(currentPage - 1) * itemsPerPage, items = filteredTalents.slice(start, start +
-itemsPerPage);\n if (items.length === 0) {\n grid.innerHTML = \"<div
-class='loading'>No talents found.</div>\"; \n
-document.getElementById(\"pagination\").innerHTML = \"\";\n return; \n }\n
-items.forEach(t => {\n const div = document.createElement(\"div\");
-div.className = \"card\";\n const waMsg = encodeURIComponent(Hi KV Voice Studio,
-I want to book talent: ${t.name}.);\n let audioHTML = t.samples.map((link, i) =>
-<div class="sample-box"><label class="sample-label">Sample
-{i+1}</label><audio controls preload=\"none\"><source src=\"{link}">).join(\"\");\n
-const initials = t.name.split(' ').map(n =>
-n[0]).join('').toUpperCase().substring(0, 2);\n div.innerHTML = <img
-src="{t.photo || ''}\" class=\"talent-image\" onerror=\"handleImageError(this, '{initials}')"
-loading="lazy">\n <div style="display:flex; justify-content:space-between;
-align-items:center">{t.name}</h3><span class=\"tag\">{t.gender}\n <p
-style="color:#94a3b8; font-size:10px;
-margin:2px 0 10px 0;">{t.displayGender}</p>\n                    <div class=\"samples-container\">{audioHTML}\n
-<a href="https://wa.me/6287823430778?text=${waMsg}" target="_blank"
-class="book-btn">⚡ BOOK THIS TALENT;\n grid.appendChild(div);\n });\n
-renderPagination();\n const players = document.querySelectorAll(\"audio\");\n
-players.forEach(p => p.addEventListener(\"play\", () => players.forEach(o => {
-if(o !== p) o.pause(); })));\n }\n\n function renderPagination() {\n const div =
-document.getElementById(\"pagination\"); const total =
-Math.ceil(filteredTalents.length / itemsPerPage);\n div.innerHTML = \"\"; if
-(total <= 1) return;\n for (let i = 1; i <= total; i++) {\n const btn =
-document.createElement(\"button\"); btn.innerText = i; btn.className = page-btn
-${i === currentPage ? 'active' : ''}`;\n btn.onclick = () => { currentPage = i;
-renderPage(); window.scrollTo({ top: 350, behavior: 'smooth' }); };
-div.appendChild(btn);\n }\n }\n\n function changeFilter(g) {\n currentFilter =
-g;\n document.querySelectorAll('.tab-btn').forEach(b => {\n
-b.classList.toggle('active', b.id === 'btn-' + g);\n });\n
-applyFilterAndRender();\n }\n\n
-document.getElementById("searchInput").addEventListener("input",
-applyFilterAndRender);\n loadData();\n \n\n" } ]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO METADATA -->
+    <title>Native Indonesian Voice Over & Dubbing Studio | KV Voice Studio</title>
+    <meta name="description" content="KV Voice Studio provides broadcast-quality native Indonesian voice-over & expert dubbing services. Featuring Male, Female, and genuine Kid voices.">
+    <meta name="keywords" content="Indonesian Voice Over, Native Indonesian Voice Talent, Dubbing Indonesia, Localization Services Asia">
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --bg: #0b0f1a; 
+            --card-bg: #161b2a; 
+            --primary: #38bdf8; 
+            --wa-green: #25D366; 
+            --text: #f8fafc; 
+            --text-dim: #94a3b8; 
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            margin: 0; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* --- NAVBAR RESPONSIVE --- */
+        .navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 10px 5%; 
+            background: rgba(11, 15, 26, 0.95); 
+            backdrop-filter: blur(10px); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo img { height: 45px; width: auto; display: block; }
+
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+        .nav-links a.active { color: var(--primary); }
+        
+        .wa-nav { 
+            background: var(--wa-green) !important; color: #ffffff !important; 
+            padding: 8px 16px; border-radius: 10px; 
+            text-decoration: none !important; font-weight: 800; font-size: 0.8rem; 
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); transition: 0.3s;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero { padding: 40px 20px; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, #0b0f1a 100%); }
+        .badge { background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; margin-bottom: 12px; display: inline-block; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-size: 1.8rem; margin: 0; letter-spacing: -1px; line-height: 1.2; }
+        .highlight { color: var(--primary); text-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+        .hero p { color: var(--text-dim); margin-top: 10px; font-size: 0.9rem; font-style: italic; }
+
+        /* --- CONTAINER & FILTERS --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px 40px; }
+        
+        .filter-bar { 
+            display: flex; 
+            flex-direction: column; /* Stacked on mobile */
+            gap: 15px; 
+            margin-bottom: 30px; 
+        }
+
+        #searchInput { 
+            background: var(--card-bg); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            padding: 12px 15px; border-radius: 12px; color: white; 
+            width: 100%; box-sizing: border-box; outline: none; font-size: 1rem;
+        }
+        
+        .tabs { 
+            display: flex; 
+            background: var(--card-bg); 
+            padding: 4px; border-radius: 10px; 
+            overflow-x: auto; /* Scrollable tabs on very small screens */
+            scrollbar-width: none;
+        }
+        .tab-btn { 
+            flex: 1;
+            background: transparent; border: none; color: var(--text-dim); 
+            cursor: pointer; font-weight: 600; padding: 10px 5px; 
+            border-radius: 8px; transition: 0.3s; font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        .tab-btn.active { background: var(--primary); color: #000; }
+
+        /* --- TALENT GRID --- */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
+
+        .card { 
+            background: var(--card-bg); border-radius: 18px; padding: 15px; 
+            border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; 
+        }
+
+        .talent-image { 
+            width: 100%; height: 280px; 
+            object-fit: cover; border-radius: 12px; 
+            margin-bottom: 15px; background: #0f172a; 
+        }
+
+        .card h3 { margin: 0; font-size: 1.1rem; font-weight: 800; }
+        .tag { font-size: 0.6rem; background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 3px 8px; border-radius: 6px; font-weight: 800; text-transform: uppercase; }
+
+        /* --- AUDIO PLAYERS --- */
+        .samples-container { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; flex-grow: 1; }
+        .sample-box { background: rgba(255,255,255,0.02); padding: 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); }
+        .sample-label { font-size: 0.6rem; color: var(--primary); font-weight: 800; text-transform: uppercase; margin-bottom: 5px; display: block; }
+        audio { width: 100%; height: 30px; filter: invert(100%) hue-rotate(180deg) brightness(1.5); }
+        
+        .book-btn { 
+            background: var(--wa-green); color: #fff; text-decoration: none; 
+            text-align: center; padding: 12px; border-radius: 12px; 
+            font-weight: 800; font-size: 0.85rem; margin-top: 15px; display: block;
+        }
+
+        /* --- PAGINATION --- */
+        .pagination { display: flex; justify-content: center; gap: 5px; margin-top: 30px; flex-wrap: wrap; }
+        .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
+        .page-btn.active { background: var(--primary); color: #000; }
+
+        /* --- FOOTER & TEAM --- */
+        .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 20px; background: #090d16; text-align: center; }
+        .team-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 25px; }
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+            gap: 20px; margin-bottom: 40px; 
+        }
+        .team-member { text-align: center; }
+        .team-photo { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid var(--card-bg); background: #1e293b; }
+        .team-member h4 { color: var(--primary); margin: 0; font-size: 0.9rem; font-weight: 800; }
+        .team-member p { color: var(--text-dim); margin: 3px 0; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; line-height: 1.2; }
+        
+        .footer-info { font-size: 0.75rem; color: var(--text-dim); margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;}
+
+        .loading { grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dim); }
+
+        /* --- DESKTOP ADJUSTMENTS (Layar Besar) --- */
+        @media (min-width: 768px) {
+            .navbar { padding: 15px 8%; }
+            .logo img { height: 60px; }
+            .nav-links a { font-size: 0.95rem; }
+            .hero { padding: 80px 20px 60px; }
+            .hero h1 { font-size: 3rem; }
+            .filter-bar { flex-direction: row; }
+            .team-grid { grid-template-columns: repeat(4, 1fr); }
+            .team-photo { width: 90px; height: 90px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><img src="logo.png" alt="KV Voice Studio"></div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Audio</a>
+            <a href="video.html">Video</a>
+            <a href="https://wa.me/6287823430778" class="wa-nav">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <span class="badge">#1 Indonesian Localization Expert</span>
+        <h1>The Most Trusted <br><span class="highlight">Native Indonesian</span> Voice Studio</h1>
+        <p>"Your Trusted Partner in Audio & Voice Production"</p>
+    </header>
+
+    <main class="container">
+        <div class="filter-bar">
+            <input type="text" id="searchInput" placeholder="Search talent name...">
+            <div class="tabs">
+                <button onclick="changeFilter('all')" class="tab-btn active" id="btn-all">All</button>
+                <button onclick="changeFilter('Male')" class="tab-btn" id="btn-Male">Male</button>
+                <button onclick="changeFilter('Female')" class="tab-btn" id="btn-Female">Female</button>
+                <button onclick="changeFilter('Kid')" class="tab-btn" id="btn-Kid">Kid</button>
+            </div>
+        </div>
+        <div id="talentGrid" class="grid"><div class="loading">Loading database...</div></div>
+        <div id="pagination" class="pagination"></div>
+    </main>
+
+    <footer class="footer">
+        <h2 class="team-title">Our <span class="highlight">Core Team</span></h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="https://www.dropbox.com/scl/fi/u61rmkyd5yg4ghmqynmoq/IMG_20191019_141957.jpg?rlkey=8hs1djk1c4ejuyghws0hno4j5&raw=1" class="team-photo" alt="Dede Ariez" onerror="handleImageError(this, 'DA')">
+                <h4>Dede Ariez</h4>
+                <p>Founder</p>
+            </div>
+            <div class="team-member">
+                <img src="https://www.dropbox.com/scl/fi/195c9i3c7kcwx8tohbk7z/Gemini_Generated_Image_tade4mtade4mtade.png?rlkey=ju6iclnjn7b840g757zxzqwzf&raw=1" class="team-photo" alt="Rosa Rosana" onerror="handleImageError(this, 'RR')">
+                <h4>Rosa Rosana</h4>
+                <p>Project Manager</p>
+            </div>
+            <div class="team-member">
+                <img src="https://www.dropbox.com/scl/fi/195c9i3c7kcwx8tohbk7z/Gemini_Generated_Image_tade4mtade4mtade.png?rlkey=ju6iclnjn7b840g757zxzqwzf&raw=1" class="team-photo" alt="Ryan Kurnia" onerror="handleImageError(this, 'RK')">
+                <h4>Ryan Kurnia</h4>
+                <p>Head Editor</p>
+            </div>
+            <div class="team-member">
+                <img src="https://www.dropbox.com/scl/fi/195c9i3c7kcwx8tohbk7z/Gemini_Generated_Image_tade4mtade4mtade.png?rlkey=ju6iclnjn7b840g757zxzqwzf&raw=1" class="team-photo" alt="Annida" onerror="handleImageError(this, 'AN')">
+                <h4>Annida</h4>
+                <p>Head of Localization</p>
+            </div>
+        </div>
+        <div class="footer-info">
+            <p><b>KV VOICE STUDIO</b></p>
+            <p>Jl. Kp. Ciwangun Indah Camp, Bandung Barat, Indonesia.</p>
+            <p>&copy; 2025 KV Voice Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTg3rjqHoD36dUM0PU33sGqYnovngVpCfBS6A2EYngYMeU8vuvXLRRuD_Dd8utXGckTMKQB_IKtqW5H/pub?output=csv";
+        let allTalents = [], filteredTalents = [], currentPage = 1, itemsPerPage = 8, currentFilter = "all";
+
+        function handleImageError(img, initials) {
+            img.onerror = null;
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="#161b2a"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="30" font-weight="bold">${initials}</text></svg>`;
+            img.src = 'data:image/svg+xml;base64,' + btoa(svg);
+        }
+
+        function fixLink(url) {
+            if (!url) return null; let link = url.trim();
+            if (link.includes("dropbox.com")) return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace(/\?dl=[01]/, "?raw=1").replace("&dl=0", "&raw=1");
+            if (link.includes("drive.google.com")) {
+                const match = link.match(/[?&]id=([^&]+)/) || link.match(/\/d\/(.*?)\//) || link.match(/\/file\/d\/(.*?)$/);
+                if (match) return `https://docs.google.com/uc?export=view&id=${match[1].split(/[?&/]/)[0]}`;
+            }
+            return null;
+        }
+
+        async function loadData() {
+            try {
+                const res = await fetch(CSV_URL); const text = await res.text();
+                const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
+                const seenNames = new Set();
+                const cleanData = [];
+                rows.slice(1).forEach(row => {
+                    const cols = row.split(/,(?=(?:(?:[^\"]*\"){2})*[^\"]*$)/).map(c => c.replace(/\"/g, "").trim());
+                    let rawName = cols[12] || cols[2] || "Unnamed";
+                    let dedupeKey = rawName.trim().toLowerCase();
+                    if (!seenNames.has(dedupeKey)) {
+                        let samples = []; for (let i = 3; i <= 9; i++) { let a = fixLink(cols[i]); if (a) samples.push(a); }
+                        samples = samples.slice(0, 5);
+                        if (samples.length > 0) {
+                            seenNames.add(dedupeKey);
+                            let photo = fixLink(cols[11]), rawCat = (cols[2] || "").toLowerCase();
+                            let g = "Kid"; if (rawCat.includes("female")) g = "Female"; else if (rawCat.includes("male")) g = "Male";
+                            cleanData.push({ name: rawName, gender: g, displayGender: cols[2], samples, photo });
+                        }
+                    }
+                });
+                allTalents = cleanData.sort((a, b) => a.name.localeCompare(b.name));
+                applyFilterAndRender();
+            } catch (e) { document.getElementById("talentGrid").innerHTML = "Error loading data."; }
+        }
+
+        function applyFilterAndRender() { filteredTalents = allTalents.filter(t => (currentFilter === "all" || t.gender === currentFilter) && t.name.toLowerCase().includes(document.getElementById("searchInput").value.toLowerCase())); currentPage = 1; renderPage(); }
+        
+        function renderPage() {
+            const grid = document.getElementById("talentGrid"); grid.innerHTML = "";
+            const start = (currentPage - 1) * itemsPerPage, items = filteredTalents.slice(start, start + itemsPerPage);
+            if (items.length === 0) { grid.innerHTML = "<div class='loading'>No talents found.</div>"; return; }
+            items.forEach(t => {
+                const div = document.createElement("div"); div.className = "card";
+                const waMsg = encodeURIComponent(`Hi KV Voice Studio, I want to book talent: ${t.name}.`);
+                let audioHTML = t.samples.map((link, i) => `<div class="sample-box"><label class="sample-label">Sample ${i+1}</label><audio controls preload="none"><source src="${link}"></audio></div>`).join("");
+                const initials = t.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+                div.innerHTML = `<img src="${t.photo || ''}" class="talent-image" onerror="handleImageError(this, '${initials}')" loading="lazy">
+                    <div style="display:flex; justify-content:space-between; align-items:center"><h3>${t.name}</h3><span class="tag">${t.gender}</span></div>
+                    <p style="color:#94a3b8; font-size:10px; margin:2px 0 10px 0;">${t.displayGender}</p>
+                    <div class="samples-container">${audioHTML}</div>
+                    <a href="https://wa.me/6287823430778?text=${waMsg}" target="_blank" class="book-btn">⚡ BOOK THIS TALENT</a>`;
+                grid.appendChild(div);
+            });
+            renderPagination();
+            const players = document.querySelectorAll("audio");
+            players.forEach(p => p.addEventListener("play", () => players.forEach(o => { if(o !== p) o.pause(); })));
+        }
+
+        function renderPagination() {
+            const div = document.getElementById("pagination"); const total = Math.ceil(filteredTalents.length / itemsPerPage);
+            div.innerHTML = ""; if (total <= 1) return;
+            for (let i = 1; i <= total; i++) {
+                const btn = document.createElement("button"); btn.innerText = i; btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.onclick = () => { currentPage = i; renderPage(); window.scrollTo({ top: 350, behavior: 'smooth' }); }; div.appendChild(btn);
+            }
+        }
+
+        function changeFilter(g) { currentFilter = g; document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-' + g).classList.add('active'); applyFilterAndRender(); }
+        document.getElementById("searchInput").addEventListener("input", applyFilterAndRender);
+        loadData();
+    </script>
+</body>
+</html>
