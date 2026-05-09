@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO METADATA BASED ON RESEARCH -->
     <title>Native Indonesian Voice Over & Dubbing Studio | KV Voice Studio</title>
-<meta name="description" content="KV Voice Studio provides broadcast-quality native Indonesian voice-over & expert dubbing services. Official Indonesian voice for Like Nastya. Male, Female, and Kid talents.">
-<meta name="keywords" content="Indonesian Voice Over, Dubbing Indonesia, Localization Services, Native Indonesian Voice Talent, Audio Production Indonesia">
+    <meta name="description" content="KV Voice Studio provides broadcast-quality native Indonesian voice-over & expert dubbing services. Official Indonesian voice for Like Nastya. Featuring Male, Female, and genuine Kid voices.">
+    <meta name="keywords" content="Indonesian Voice Over, Native Indonesian Voice Talent, Dubbing Indonesia, Localization Services Asia, Audio Production Indonesia">
+    <meta name="author" content="KV Voice Studio">
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #0b0f1a; --card-bg: #161b2a; --primary: #38bdf8; --wa-green: #25D366; --text: #f8fafc; --text-dim: #94a3b8; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
         
+        /* Navbar */
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 8%; background: rgba(11, 15, 26, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .logo img { height: 55px; width: auto; display: block; }
+        .logo img { height: 50px; width: auto; display: block; }
         .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary); }
@@ -20,11 +25,13 @@
         .wa-nav { 
             background: var(--wa-green) !important; color: #ffffff !important; padding: 10px 24px; border-radius: 12px; 
             text-decoration: none !important; font-weight: 800; font-size: 0.95rem; 
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); transition: 0.3s; border: 2px solid rgba(255,255,255,0.1); display: inline-block;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); border: 2px solid rgba(255,255,255,0.1); display: inline-block;
         }
-        .wa-nav:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); color: #ffffff !important; }
+        .wa-nav:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
 
+        /* Hero with SEO Badge */
         .hero { padding: 80px 20px 40px; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, #0b0f1a 70%); }
+        .badge { background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; display: inline-block; text-transform: uppercase; letter-spacing: 1px; }
         .hero h1 { font-size: 2.8rem; margin: 0; letter-spacing: -2px; }
         .highlight { color: var(--primary); text-shadow: 0 0 30px rgba(56, 189, 248, 0.3); }
         .hero p { color: var(--text-dim); margin-top: 10px; font-size: 1rem; font-style: italic; }
@@ -47,19 +54,21 @@
         .sample-box { background: rgba(255,255,255,0.03); padding: 8px; border-radius: 10px; }
         .sample-label { font-size: 8px; color: var(--primary); font-weight: 800; text-transform: uppercase; margin-bottom: 4px; display: block; }
         audio { width: 100%; height: 25px; filter: invert(100%) hue-rotate(180deg) brightness(1.5); }
-        .book-btn { background: var(--wa-green); color: #fff; text-decoration: none; text-align: center; padding: 10px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; margin-top: 15px; }
+        .book-btn { background: var(--wa-green); color: #fff; text-decoration: none; text-align: center; padding: 10px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; margin-top: 15px; transition: 0.3s; }
 
         .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 40px; margin-bottom: 60px; }
         .page-btn { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 6px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; }
         .page-btn.active { background: var(--primary); color: #000; }
 
+        /* Footer & Team Section */
         .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 8% 40px; background: #090d16; text-align: center; }
         .team-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 40px; letter-spacing: -1px; }
         .team-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 50px; }
         .team-member { width: 180px; text-align: center; }
-        .team-photo { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid var(--card-bg); box-shadow: 0 4px 15px rgba(0,0,0,0.3); background: #1e293b; display: inline-flex; align-items: center; justify-content: center; }
+        .team-photo { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid var(--card-bg); box-shadow: 0 4px 15px rgba(0,0,0,0.3); background: #1e293b; display: inline-flex; align-items: center; justify-content: center;}
         .team-member h4 { color: var(--primary); margin: 0; font-size: 1rem; font-weight: 800; }
-        .team-member p { color: var(--text-dim); margin: 5px 0; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; line-height: 1.2; }
+        .team-member p { color: var(--text-dim); margin: 5px 0; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; line-height: 1.2; }
+        
         .footer-info { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; padding-top: 30px; font-size: 0.85rem; color: var(--text-dim); }
         .loading { grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dim); }
     </style>
@@ -73,11 +82,11 @@
             <a href="https://wa.me/6287823430778" class="wa-nav">Contact Us</a>
         </div>
     </nav>
-<header class="hero">
-    <span class="badge" style="background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 15px; display: inline-block;">#1 INDONESIAN LOCALIZATION EXPERT</span>
-    <h1>The Most Trusted <span class="highlight">Native Indonesian</span> Voice Studio</h1>
-    <p>"Your Trusted Partner in Audio & Voice Production"</p>
-</header>
+    <header class="hero">
+        <span class="badge">#1 Indonesian Localization Expert</span>
+        <h1>The Most Trusted <span class="highlight">Native Indonesian</span> Voice Studio</h1>
+        <p>"Your Trusted Partner in Audio & Voice Production"</p>
+    </header>
 
     <main class="container">
         <div class="filter-bar">
@@ -112,15 +121,15 @@
                 <p>Head Editor</p>
             </div>
             <div class="team-member">
-                <img src="https://www.dropbox.com/scl/fi/gzebghqo9kawc7xq1fy6j/Annieda.jpeg?rlkey=bg6op3824x5hlub6sromzv15l&st=16ldtj8t&dl=1" class="team-photo" alt="Annida" onerror="handleImageError(this, 'AN')">
+                <img src="https://www.dropbox.com/scl/fi/195c9i3c7kcwx8tohbk7z/Gemini_Generated_Image_tade4mtade4mtade.png?rlkey=ju6iclnjn7b840g757zxzqwzf&raw=1" class="team-photo" alt="Annida" onerror="handleImageError(this, 'AN')">
                 <h4>Annida</h4>
                 <p>Head of Translation & Localization</p>
             </div>
         </div>
+
         <div class="footer-info">
-            <p><b>KV VOICE STUDIO</b></p>
+            <p><b>PT DKV VOICE STUDIO</b></p>
             <p>Jl. Kp. Ciwangun Indah Camp, Kab. Bandung Barat, West Java, Indonesia.</p>
-            </p> Second Office Jl. Kolonel Masturi Nagrak, RT.01/RW.09, Sukajaya, Kec. Lembang, Kabupaten Bandung Barat, Jawa Barat 40391</p>
             <p>&copy; 2025 KV Voice Studio. All rights reserved.</p>
         </div>
     </footer>
@@ -131,7 +140,10 @@
 
         function handleImageError(img, initials) {
             img.onerror = null;
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1e293b"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="30" font-weight="bold">${initials}</text></svg>`;
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+                <rect width="100" height="100" fill="#161b2a"/>
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="30" font-weight="bold">${initials}</text>
+            </svg>`;
             img.src = 'data:image/svg+xml;base64,' + btoa(svg);
         }
 
@@ -149,14 +161,31 @@
             try {
                 const res = await fetch(CSV_URL); const text = await res.text();
                 const rows = text.split(/\r?\n/).filter(r => r.trim() !== "");
-                allTalents = rows.slice(1).map(row => {
+                
+                // DATA DEDUPLICATION LOGIC
+                const uniqueNames = new Set();
+                const cleanData = [];
+
+                rows.slice(1).forEach(row => {
                     const cols = row.split(/,(?=(?:(?:[^\"]*\"){2})*[^\"]*$)/).map(c => c.replace(/\"/g, "").trim());
-                    let samples = []; for (let i = 3; i <= 9; i++) { let a = fixLink(cols[i]); if (a) samples.push(a); }
-                    samples = samples.slice(0, 5);
-                    let photo = fixLink(cols[11]), name = cols[12] || "Unnamed", rawCat = (cols[2] || "").toLowerCase();
-                    let g = "Kid"; if (rawCat.includes("female")) g = "Female"; else if (rawCat.includes("male")) g = "Male";
-                    return { name, gender: g, displayGender: cols[2], samples, photo };
-                }).filter(t => t.samples.length > 0);
+                    let name = cols[12] || "Unnamed";
+                    
+                    // Only process if we haven't seen this name yet
+                    if (!uniqueNames.has(name)) {
+                        let samples = []; 
+                        for (let i = 3; i <= 9; i++) { let a = fixLink(cols[i]); if (a) samples.push(a); }
+                        samples = samples.slice(0, 5);
+                        
+                        if (samples.length > 0) {
+                            uniqueNames.add(name);
+                            let photo = fixLink(cols[11]), rawCat = (cols[2] || "").toLowerCase();
+                            let g = "Kid"; if (rawCat.includes("female")) g = "Female"; else if (rawCat.includes("male")) g = "Male";
+                            cleanData.push({ name, gender: g, displayGender: cols[2], samples, photo });
+                        }
+                    }
+                });
+
+                allTalents = cleanData;
                 allTalents.sort((a, b) => a.name.localeCompare(b.name));
                 applyFilterAndRender();
             } catch (e) { document.getElementById("talentGrid").innerHTML = "Error loading data."; }
@@ -196,6 +225,7 @@
                 btn.onclick = () => { currentPage = i; renderPage(); window.scrollTo({ top: 400, behavior: 'smooth' }); }; div.appendChild(btn);
             }
         }
+
         function changeFilter(g) { currentFilter = g; document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-' + g).classList.add('active'); applyFilterAndRender(); }
         document.getElementById("searchInput").addEventListener("input", applyFilterAndRender);
         loadData();
